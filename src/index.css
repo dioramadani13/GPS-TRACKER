@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Leaflet dark/light styles and customizations */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  font-family: inherit;
+}
+
+/* Subtle dark tile filter when dark mode is enabled */
+.dark .leaflet-tile {
+  filter: brightness(0.78) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+}
+
+.dark .leaflet-container {
+  background-color: #0b1120;
+}
+
+/* Leaflet popup customization */
+.leaflet-popup-content-wrapper {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  padding: 0 !important;
+}
+
+.light .leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #0f172a !important;
+}
+
+.light .leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+/* Custom marker pulse */
+@keyframes tracker-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 14px rgba(37, 99, 235, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+}
+
+.gps-pulse-ring {
+  animation: tracker-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Mobile landscape optimization: allows natural vertical scrolling so all info is visible when rotated */
+@media (orientation: landscape) and (max-height: 600px) {
+  .mobile-landscape-container {
+    padding: 0.625rem 0.75rem 3rem 0.75rem !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .mobile-landscape-split {
+    display: grid !important;
+    grid-template-columns: 1.15fr 1fr !important;
+    gap: 0.75rem !important;
+    height: auto !important;
+    align-items: start !important;
+  }
+  .mobile-landscape-map {
+    height: 320px !important;
+    min-height: 280px !important;
+    position: sticky !important;
+    top: 3.75rem !important;
+    z-index: 20 !important;
+  }
+  .mobile-landscape-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.625rem !important;
+    overflow: visible !important;
+    max-height: none !important;
+    padding-bottom: 3rem !important;
+  }
+}

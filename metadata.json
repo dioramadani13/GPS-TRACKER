@@ -1,0 +1,8 @@
+{
+  "name": "IoT GPS Tracker Dashboard",
+  "description": "Real-time IoT GPS tracking and telemetry dashboard for ESP32 and u-blox NEO-6M with live map, speed monitoring, and battery analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
